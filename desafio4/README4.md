@@ -250,3 +250,4 @@ Você também pode rodar os serviços apontando diretamente para `localhost`:
 - [Docker Networking](https://docs.docker.com/network/)
 - [Patterns de Microsserviços](https://microservices.io/)
 
+

@@ -28,4 +28,3 @@ if __name__ == '__main__':
     print("Servidor Flask iniciando na porta 8080...")
     print("Aguardando requisições...")
     app.run(host='0.0.0.0', port=8080, debug=True)
-

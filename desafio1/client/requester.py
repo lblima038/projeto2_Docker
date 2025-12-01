@@ -60,4 +60,3 @@ if __name__ == '__main__':
         print(f"Total: {success_count}/{request_count} requisições bem-sucedidas")
         print("=" * 60)
         sys.exit(0)
-

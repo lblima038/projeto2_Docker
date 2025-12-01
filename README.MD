@@ -237,29 +237,6 @@ docker exec -it [CONTAINER_NAME] /bin/bash
 docker system prune
 ```
 
-## 🐛 Solução de Problemas
-
-### Porta já em uso
-
-Se receber um erro de porta já em uso, você pode:
-
-1. Parar o serviço que está usando a porta
-2. Modificar a porta no `docker-compose.yml` (mudar `8080:8080` para `8081:8080`, por exemplo)
-
-### Containers não se comunicam
-
-Verifique se:
-- Todos os containers estão na mesma rede Docker
-- Os nomes dos serviços no `docker-compose.yml` estão corretos
-- Os serviços estão realmente rodando (`docker-compose ps`)
-
-### Erro ao construir imagens
-
-Certifique-se de que:
-- Os arquivos `Dockerfile` estão corretos
-- Os arquivos `requirements.txt` existem e estão completos
-- Você tem permissões adequadas para executar Docker
-
 ## 📚 Recursos Adicionais
 
 - [Documentação Docker](https://docs.docker.com/)

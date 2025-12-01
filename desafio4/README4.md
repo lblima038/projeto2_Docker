@@ -251,3 +251,4 @@ Você também pode rodar os serviços apontando diretamente para `localhost`:
 - [Patterns de Microsserviços](https://microservices.io/)
 
 
+

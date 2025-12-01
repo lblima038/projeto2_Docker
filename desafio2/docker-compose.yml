@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  database:
+    build: ./database
+    container_name: desafio2-database
+    volumes:
+      - db-data:/data
+    networks:
+      - desafio-network
+
+  reader:
+    build: ./reader
+    container_name: desafio2-reader
+    depends_on:
+      - database
+    volumes:
+      - db-data:/data
+    networks:
+      - desafio-network
+
+volumes:
+  db-data:
+    name: desafio2-db-data
+    driver: local
+
+networks:
+  desafio-network:
+    name: desafio-network
+    driver: bridge
+

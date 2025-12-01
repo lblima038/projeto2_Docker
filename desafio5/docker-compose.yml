@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  service-users:
+    build: ./service-users
+    container_name: desafio5-service-users
+    networks:
+      - desafio5-network
+    environment:
+      - SERVICE_NAME=service-users
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:5000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  service-orders:
+    build: ./service-orders
+    container_name: desafio5-service-orders
+    networks:
+      - desafio5-network
+    environment:
+      - SERVICE_NAME=service-orders
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:5001/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  gateway:
+    build: ./gateway
+    container_name: desafio5-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - service-users
+      - service-orders
+    networks:
+      - desafio5-network
+    environment:
+      - SERVICE_USERS_URL=http://service-users:5000
+      - SERVICE_ORDERS_URL=http://service-orders:5001
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8080/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+networks:
+  desafio5-network:
+    name: desafio5-network
+    driver: bridge
+

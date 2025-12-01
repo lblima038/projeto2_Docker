@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./web
+    container_name: desafio3-web
+    ports:
+      - "8082:5000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=appdb
+      - DB_USER=appuser
+      - DB_PASSWORD=apppassword
+      - REDIS_HOST=cache
+      - REDIS_PORT=6379
+    depends_on:
+      - db
+      - cache
+    networks:
+      - desafio3-network
+
+  db:
+    image: postgres:15-alpine
+    container_name: desafio3-db
+    environment:
+      - POSTGRES_DB=appdb
+      - POSTGRES_USER=appuser
+      - POSTGRES_PASSWORD=apppassword
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - desafio3-network
+
+  cache:
+    image: redis:7-alpine
+    container_name: desafio3-cache
+    networks:
+      - desafio3-network
+
+volumes:
+  db-data:
+    name: desafio3-db-data
+
+networks:
+  desafio3-network:
+    name: desafio3-network
+    driver: bridge
+
+

@@ -206,33 +206,6 @@ ports:
 - **`localhost`**: Refere-se ao próprio container
 - **`server`**: Refere-se ao container do serviço `server` na mesma rede (resolvido pelo DNS do Docker)
 
-## 🐛 Troubleshooting
-
-### Container cliente não consegue conectar
-
-1. Verifique se ambos os containers estão na mesma rede:
-   ```bash
-   docker network inspect desafio-network
-   ```
-
-2. Verifique se o servidor está rodando:
-   ```bash
-   docker-compose ps
-   ```
-
-3. Verifique os logs do servidor:
-   ```bash
-   docker-compose logs server
-   ```
-
-### Porta 8080 já está em uso
-
-Altere a porta no `docker-compose.yml`:
-```yaml
-ports:
-  - "8081:8080"  # Use 8081 no host
-```
-
 ## 📚 Recursos Adicionais
 
 - [Documentação Docker Networking](https://docs.docker.com/network/)
